@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use } from 'react'
 import style from '../../styles/RegisterForm.module.css'
 import { useState } from 'react'
 import wallpaper from '../../public/237.png'
@@ -97,7 +97,7 @@ function RegisterForm() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email: data.email })
+                body: JSON.stringify({ email: data.email, username: data.username, name: data.name})
             });
             if (response.ok) {
                 const response = await fetch('/api/sentregister', {
@@ -117,7 +117,7 @@ function RegisterForm() {
                     alert('เกิดข้อผิดพลาดในการสมัครสมาชิก กรุณาลองใหม่อีกครั้ง');
                 }
             } else {
-                alert('Email นี้เคยถูกสมัครไปแล้ว');
+                alert('ชื่อในเกม หรือ Username หรือ Email นี้เคยถูกสมัครไปแล้ว');
             }
         } catch (error) {
             console.error('Error checking email:', error);

@@ -23,18 +23,32 @@ export default async function handler(req:any, res:any) {
   
   if (req.method === 'POST') {
     const { email } = req.body;
+    const { username } = req.body;
+    const { name } = req.body;
 
     try {
       await sql.connect(config);
       const result = await sql.query`SELECT * FROM LosaGame.dbo.userMemberDB WHERE email = ${email}`;
-      console.log(result.recordset.map((user: any) => user.email));
       const resultdata = result.recordset.map((user: any) => user.email);
-      console.log(resultdata.length + ' Email exists');
+
+      const result2 = await sql.query`SELECT * FROM LosaGame.dbo.userMemberDB WHERE userID = ${username}`;
+      const resultdata2 = result2.recordset.map((user: any) => user.userID);
+
+      const result3 = await sql.query`SELECT * FROM LosaGame.dbo.userMemberDB WHERE nickName = ${name}`;
+      const resultdata3 = result3.recordset.map((user: any) => user.name);
 
       if (resultdata.length === 0) {
-        res.status(200).json({ message: "Email สามารถใช้ได้" });
+        if (resultdata2.length === 0) {
+          if (resultdata3.length === 0) {
+            res.status(200).json({ message: "ชื่อในเกมสามารถใช้ได้" });
+          } else {
+            res.status(400).json(alert("ชื่อในเกมนี้ถูกใช้ไปแล้ว") );
+          }
+        } else {
+          res.status(400).json( alert("username นี้ถูกใช้ไปแล้ว") );
+        }
       } else {
-        res.status(400).json({ error: "Email นี้ถูกใช้ไปแล้ว" });
+        res.status(400).json( alert("Email นี้ถูกใช้ไปแล้ว") );
       }
     } catch (err) {
       console.error('Error executing query:', err);
