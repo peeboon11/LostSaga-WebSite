@@ -1,0 +1,232 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #242424;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: black;
+    height: 80px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.linkleft{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+
+.linkright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.linkall{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.defaultbtn{
+    color: white;
+    text-decoration: none;
+    padding: 1.8rem;
+    font-size: 18px;
+    border-bottom: 2px #242424 solid;
+    transition: 0.3s ease-in-out all;
+    background-color: none;
+}
+
+.defaultbtn:hover{
+    background-color: rgba(206, 0, 0, 0.384);
+    color: white;
+    border-bottom: 2px red solid;
+}
+
+.registerbtn {
+    float: right;
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    border: 1px rgb(242, 255, 58) solid;
+    background-color: none;
+    transition: 0.3s ease-in-out all;
+}
+
+.registerbtn:hover{
+    color: #242424;
+    border: 1px rgb(242, 255, 58) solid;
+    background-color: rgba(242, 255, 58);
+}
+
+
+
+.downloadbtn {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    border: 1px red solid;
+    background-color: rgb(255, 51, 51);
+    transition: 0.3s ease-in-out all;
+}
+
+.downloadbtn:hover{
+    color: white;
+    border: 1px red solid;
+    background-color: #242424;
+}
+
+
+.registerbtnleft {
+    float: right;
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    border: 1px rgb(242, 255, 58) solid;
+    background-color: none;
+    transition: 0.3s ease-in-out all;
+    display: none;
+}
+
+.registerbtnleft:hover{
+    color: #242424;
+    border: 1px rgb(242, 255, 58) solid;
+    background-color: rgba(242, 255, 58);
+}
+
+
+
+.downloadbtnleft {
+    display: none;
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    border: 1px red solid;
+    background-color: rgb(255, 51, 51);
+    transition: 0.3s ease-in-out all;
+}
+
+.downloadbtnleft:hover{
+    color: white;
+    border: 1px red solid;
+    background-color: #242424;
+}
+
+.imagelogo {
+    width: 140px;
+    margin-right: 10px;
+    animation: flip 5s linear infinite;
+}
+
+
+@keyframes flip {
+    0% {
+        transform: perspective(400px) rotateY(0deg); /* Start with no rotation */
+    }
+    25% {
+        transform: perspective(400px) rotateY(0deg); /* Rotate halfway */
+    }
+    80% {
+        transform: perspective(400px) rotateY(180deg); /* Rotate halfway */
+    }
+    100% {
+        transform: perspective(400px) rotateY(360deg); /* Rotate to initial position */
+    }
+}
+
+
+.burgerMenu {
+    display: none; /* Hide the burger menu by default */
+    cursor: pointer;
+}
+
+.burgerLine {
+    width: 25px;
+    height: 3px;
+    background-color: rgb(255, 255, 255);
+    margin: 5px;
+    transition: transform 0.4s;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /* border: 1px solid red; */
+    justify-content: space-between;
+}
+
+.linkall{
+    flex-direction: row;
+}
+
+
+@media (max-width: 768px) {
+    .linkleft{
+        justify-content: space-between;
+    }
+
+    .linkright{
+        flex-direction: column;
+    }
+
+    .downloadbtn {
+        display: none;
+    }
+
+    .registerbtn {
+        display: none;
+    }
+
+    .burgerMenu {
+        display: block;
+    }
+
+    .registerbtnleft {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .downloadbtnleft {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .links {
+        display: none; /* Hide the links by default on smaller screens */
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        background-color: rgba(49, 49, 49, 0.747);
+        width: 100%;
+        padding: 10px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    
+
+    .showMenu {
+        display: flex;
+    }
+
+    
+}

@@ -1,0 +1,56 @@
+ALTER PROCEDURE [dbo].[web_member_add]
+(
+	@userID varchar(12)
+,	@nickName varchar(12)
+,	@userPWD varchar(24)
+,	@EMail varchar(50)
+,	@mailling int
+,	@userType int
+,	@joinType int
+,	@gender int
+,	@userIP varchar(15)
+--,	@returnVal int output
+,	@trackingcode int = 0
+,	@makeType tinyint = 0
+)
+As
+
+	SET XACT_ABORT ON
+
+	BEGIN TRAN
+
+	DECLARE @accountIDX int
+
+	-- 게임 관련 기본 데이터 저장
+	INSERT INTO userMemberDB (userID, nickName, userPWD, EMail, mailling, userType, joinType, limitType, limitDate, trackingcode, regDate, makeType, verified)
+	VALUES (@userID, @nickName, @userPWD, @EMail, @mailling, @userType, @joinType, 0, '1999-01-01', @trackingcode, getdate(), @makeType, 0)
+
+	SET @accountIDX = (SELECT accountIDX FROM userMemberDB with(nolock) WHERE userID=@userID)
+
+	INSERT INTO userCashDB (accountIDX, amtCash, amtBonus, amtLimit, amtSum, chgDate, regDate)
+	VALUES (@accountIDX, 0, 0, 99900, 0, getdate(), getdate())
+
+	INSERT INTO userInfoDB (accountIDX, visit_count, rec_index, rec_inc, rec_dec, checkDate, cnnDate, userIP, regDate)
+	VALUES (@accountIDX, 0, 0, 0, 0, getdate()-1, '2000-01-01', @userIP, getdate())
+
+	INSERT INTO userGameDB (accountIDX, userState, gameMoney, playTime, conn_count, userLevel, userEXP, rencpoint, renspoint, relateLevel, regionType, refillData, connDate,regDate)
+	VALUES (@accountIDX, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, '2000-01-01', getdate())
+
+		INSERT INTO userNameDB (accountIDX, userName, userBirthday, userJumin1, userJumin2, userEnCode, userNumber, userGender, returnValue, userIP, regDate)
+		     VALUES (@accountIDX, '', '010101', '', '','111111111111111', 1, @gender, 1, '0.0.0.0', GETDATE())
+
+	-- userRecordBattleDB 쿼리 다시 만들것. 잊어버릴까봐 임시로 넣어 놓음.
+	INSERT INTO userRecordBattleDB (accountIDX, type1_win, type1_lose, type1_kill, type1_death, type2_win, type2_lose, type2_kill, type2_death, type3_win, type3_lose, type3_kill, type3_death, type4_win, type4_lose, type4_kill, type4_death, regDate)
+	VALUES (@accountIDX, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, getdate())
+	
+	INSERT INTO dbo.userPresentDB (sendIDX, receiveIDX, presentType, value1, value2, value3, value4, msgType, flag, limitDate, regDate ) 
+	values (1105, @accountIDX, 3, 	3003192, 1, 0, 0,  3, 1, GETDATE()+28, GETDATE())
+
+	INSERT INTO userLoginDB (accountIDX, encodeKey, gameServerID, connDate) VALUES (@accountIDX, '111111111111111', 0, getdate())
+	
+
+
+IF (@@ERROR = 0)
+    COMMIT TRAN
+ELSE
+    ROLLBACK TRAN

@@ -1,0 +1,135 @@
+.main {
+    display: flex;
+    height: 90vh;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Aldrich';
+}
+.main::after {
+    content: ""; /* Required for pseudo-elements */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px; /* Adjust as needed */
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgb(0, 0, 0)); /* Gradient with transparency */
+    pointer-events: none; /* Ensure the pseudo-element doesn't interfere with mouse events */
+}
+
+.mainboxinformation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: 4vh;
+    font-weight: bold;
+    margin: 2% 0;
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    gap: 10px;
+    animation: openanimation 2s ease-in-out;
+}
+
+.news{
+    border: 1px solid red;
+    font-size: 2vh;
+    width: fit-content;
+    text-align: center;
+}
+
+.wallpaper{
+    position: absolute;
+    width: 100%;
+    opacity: 0.5;
+    height: 100%;
+    object-fit: cover;
+    object-position: 100% 10%;
+}
+
+.box{
+    width: 70%;
+    height: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    opacity: 1;
+    z-index: 2;
+}
+
+.text{
+    text-align: center;
+    text-wrap: wrap;
+    font-size: 2vh;
+    width: 100%;
+    height: 100%;
+    padding: 0 10%;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.logo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 100% 10%;
+    animation: logoAnimation 2s infinite;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+    cursor: pointer;
+}
+
+.logo:hover{
+    animation-play-state: paused;
+    width: 110%;
+}
+
+.defaultbtn{
+    font-family: 'Aldrich';
+    padding: 1rem;
+    background-color: #7289da;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 2vh;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.defaultbtn:hover{
+    background-color: #748de5;
+    font-size: 2.1vh;
+}
+
+@keyframes logoAnimation {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes openanimation {
+    0% {
+        transform: translateY(10);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
