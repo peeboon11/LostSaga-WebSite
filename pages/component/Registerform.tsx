@@ -26,7 +26,7 @@ function RegisterForm() {
 
         const checkNameAndUsername = () => {
             const thaiRegex = /[ก-๙]/;
-            if (thaiRegex.test(data.name) || thaiRegex.test(data.username) || thaiRegex.test(data.password) || thaiRegex.test(data.email)){
+            if (thaiRegex.test(data.name) || thaiRegex.test(data.username) || thaiRegex.test(data.password) || thaiRegex.test(data.email)) {
                 alert('ชื่อในเกม, Username, Password, Email ไม่สามารถใช้ภาษาไทยได้');
                 return;
             }
@@ -97,7 +97,7 @@ function RegisterForm() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email: data.email, username: data.username, name: data.name})
+                body: JSON.stringify({ email: data.email, username: data.username, name: data.name })
             });
             if (response.ok) {
                 const response = await fetch('/api/sentregister', {
@@ -105,19 +105,26 @@ function RegisterForm() {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ 
+                    body: JSON.stringify({
                         name: data.name,
                         username: data.username,
                         password: data.password,
-                        email: data.email })
+                        email: data.email
+                    })
                 });
                 if (response.ok) {
                     alert('สมัครสมาชิก สำเร็จแล้ว');
                 } else {
                     alert('เกิดข้อผิดพลาดในการสมัครสมาชิก กรุณาลองใหม่อีกครั้ง');
                 }
+            } else if (response.status === 110) {
+                alert('Email นี้เคยถูกสมัครไปแล้ว');
+            } else if (response.status === 120) {
+                alert('Username นี้ถูกใช้ไปแล้ว');
+            } else if (response.status === 130) {
+                alert('ชื่อในเกมนี้ถูกใช้ไปแล้ว');
             } else {
-                alert('ชื่อในเกม หรือ Username หรือ Email นี้เคยถูกสมัครไปแล้ว');
+                alert('มีข้อผิดพลาดของระบบ โปรดแจ้งแอดมิน');
             }
         } catch (error) {
             console.error('Error checking email:', error);

@@ -42,13 +42,14 @@ export default async function handler(req:any, res:any) {
           if (resultdata3.length === 0) {
             res.status(200).json({ message: "ชื่อในเกมสามารถใช้ได้" });
           } else {
-            res.status(400).json(alert("ชื่อในเกมนี้ถูกใช้ไปแล้ว") );
+            res.status(130).json(alert("ชื่อในเกมนี้ถูกใช้ไปแล้ว") );
           }
         } else {
-          res.status(400).json( alert("username นี้ถูกใช้ไปแล้ว") );
+          res.status(120).json( alert("username นี้ถูกใช้ไปแล้ว") );
         }
       } else {
-        res.status(400).json( alert("Email นี้ถูกใช้ไปแล้ว") );
+        res.status(110).json( alert("Email นี้ถูกใช้ไปแล้ว") );
+        return 1;
       }
     } catch (err) {
       console.error('Error executing query:', err);
