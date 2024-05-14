@@ -124,7 +124,7 @@ function RegisterForm() {
             } else if (response.status === 130) {
                 alert('ชื่อในเกมนี้ถูกใช้ไปแล้ว');
             } else {
-                alert('มีข้อผิดพลาดของระบบ โปรดแจ้งแอดมิน');
+             alert('Email Username ชื่อในเกมนี้ ถูกใช้ไปแล้ว กรุณาลองใหม่อีกครั้ง / โปรดแจ้งแอดมิน');
             }
         } catch (error) {
             console.error('Error checking email:', error);
