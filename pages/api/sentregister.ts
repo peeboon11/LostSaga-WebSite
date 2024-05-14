@@ -95,7 +95,6 @@ export default async function handler(req: any, res: any) {
 
                 res.status(200).json({ message: 'User registered successfully' });
             } catch (error) {
-                console.error('Error registering user:', error);
                 res.status(500).json({ message: 'Failed to register user' });
             }
 
@@ -103,7 +102,6 @@ export default async function handler(req: any, res: any) {
 
             res.status(200).json({ message: 'User registered successfully' });
         } catch (error) {
-            console.error('Error registering user:', error);
             res.status(500).json({ message: 'Failed to register user' });
         }
     }

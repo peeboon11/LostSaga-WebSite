@@ -52,7 +52,6 @@ export default async function handler(req:any, res:any) {
         return 1;
       }
     } catch (err) {
-      console.error('Error executing query:', err);
       res.status(500).json({ error: 'Internal server error' });
     }
   }
