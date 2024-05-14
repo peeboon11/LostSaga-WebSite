@@ -4,10 +4,10 @@ import Registerform from './component/Registerform'
 
 function Register() {
     return (
-        <>
+        <div style={{backgroundColor:"black"}}>
             <Nevbar />
             <Registerform />
-        </>
+        </div>
     )
 }
 

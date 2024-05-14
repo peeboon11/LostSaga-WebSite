@@ -36,6 +36,7 @@
     height: fit-content;
     gap: 10px;
     animation: openanimation 2s ease-in-out;
+    color: white;
 }
 
 .news{
@@ -94,6 +95,7 @@
 }
 
 .defaultbtn{
+    color: white;
     font-family: 'Aldrich';
     padding: 1rem;
     background-color: #7289da;

@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 function Information() {
     return (
-        <>
+        <div style={{backgroundColor:"black"}}>
             <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'></link>
             <div className={style.main}>
                 <img src={wallpaper.src} alt="" className={style.wallpaper} />
@@ -32,7 +32,7 @@ function Information() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
