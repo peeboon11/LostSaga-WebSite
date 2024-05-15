@@ -40,6 +40,22 @@ function RegisterForm() {
             return;
         }
 
+        if (data.name.toLowerCase().includes('gm') || data.username.toLowerCase().includes('gm')) {
+            alert('ชื่อในเกม หรือ username ห้ามใช้ gm อยู่ในชื่อ');
+            return;
+        }
+
+        if (data.name.toLowerCase().includes('admin') || data.username.toLowerCase().includes('admin')) {
+            alert('ชื่อในเกม หรือ username ห้ามใช้ admin อยู่ในชื่อ');
+            return;
+        }
+
+        if (data.name.toLowerCase().includes('developer') || data.username.toLowerCase().includes('developer')) {
+            alert('ชื่อในเกม หรือ username ห้ามใช้ developer อยู่ในชื่อ');
+            return;
+        }
+
+
         if (data.name.length < 3) {
             alert('ชื่อในเกม ขั้นต่ำ 3 ตัวอักษร');
             return;
