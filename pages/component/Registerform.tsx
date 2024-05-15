@@ -40,16 +40,16 @@ function RegisterForm() {
             return;
         }
 
-        if (data.name.toLowerCase().startsWith('gm') || data.username.toLowerCase().startsWith('gm') || data.name.toLowerCase().startsWith('admin') || data.username.toLowerCase().startsWith('admin') || data.name.toLowerCase().startsWith('developer') || data.username.toLowerCase().startsWith('developer')){
-            alert('ชื่อในเกม หรือ username ห้ามขึ้นต้นด้วย gm , GM , admin หรือ developer');
+        if (data.name.toLowerCase().startsWith('gm') || data.username.toLowerCase().startsWith('gm') || data.name.toLowerCase().startsWith('admin') || data.username.toLowerCase().startsWith('admin') || data.name.toLowerCase().startsWith('developer') || data.username.toLowerCase().startsWith('developer') || data.name.toLowerCase().startsWith('dev') || data.username.toLowerCase().startsWith('dev')){
+            alert('ชื่อในเกม หรือ username ห้ามขึ้นต้นด้วย gm , GM , admin, dev หรือ developer');
             return;
         }
 
 
         const checkFirstWord = () => {
             const firstWord = data.name.split(' ')[0];
-            if (firstWord.toLowerCase() === '[GM]' || firstWord.toLowerCase() === 'gm' || firstWord.toLowerCase() === 'admin' || firstWord.toLowerCase() === 'developer') {
-                alert('ชื่อในเกม หรือ username ห้ามใช้คำว่า GM, admin, หรือ developer อยู่ในชื่อ');
+            if (firstWord.toLowerCase() === '[GM]' || firstWord.toLowerCase() === 'gm' || firstWord.toLowerCase() === 'admin' || firstWord.toLowerCase() === 'developer' || firstWord.toLowerCase() === 'dev' ){
+                alert('ชื่อในเกม หรือ username ห้ามใช้คำว่า GM, admin, dev หรือ developer อยู่ในชื่อ');
                 return;
             }
         }
