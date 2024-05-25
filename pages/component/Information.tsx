@@ -1,7 +1,7 @@
 import style from '../../styles/Information.module.css'
 import character from '../../public/Furious.png'
 import React from 'react';
-import wallpaper from '../../public/237.png'
+import wallpaper from '../../public/238.png'
 import Logo from '../../public/logow.png'
 import Link from 'next/link';
 

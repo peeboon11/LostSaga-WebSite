@@ -1,6 +1,6 @@
 import React from 'react'
 import style from '../../styles/News.module.css'
-import character from '../../public/237text.png'
+import character from '../../public/238text.png'
 
 
 function News() {
