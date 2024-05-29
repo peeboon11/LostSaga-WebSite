@@ -28,6 +28,8 @@ export default async function handler(req: any, res: any) {
 
         try {
             await sql.connect(config);
+            console.log('DB Connected');
+            
             const request = new sql.Request();
             try {
                 const query = `
@@ -45,9 +47,14 @@ export default async function handler(req: any, res: any) {
                 request.input('makeType', sql.Int, 0);
                 await request.query(query);
 
+                console.log(username + 'query Pass');
+                
+
                 const accountIDXQuery = `
                     SELECT accountIDX FROM LosaGame.dbo.userMemberDB with(nolock) WHERE userID='${username}'
                 `;
+                console.log(username + 'accountIDXQuery Pass');
+                
                 const result = await request.query(accountIDXQuery);
                 const accountIDX = result.recordset[0].accountIDX;
 
@@ -55,6 +62,10 @@ export default async function handler(req: any, res: any) {
                     INSERT INTO LosaGame.dbo.userCashDB (accountIDX, amtCash, amtBonus, amtLimit, amtSum, chgDate, regDate)
                     VALUES (${accountIDX}, 0, 0, 99900, 0, getdate(), getdate())
                 `;
+
+                console.log(accountIDX + 'userCashQuery Pass');
+                
+
                 await request.query(userCashQuery);
 
                 const userInfoQuery = `
@@ -63,11 +74,17 @@ export default async function handler(req: any, res: any) {
                 `;
                 await request.query(userInfoQuery);
 
+                console.log(accountIDX + 'userInfoQuery Pass');
+                
+
                 const userGameQuery = `
                     INSERT INTO LosaGame.dbo.userGameDB (accountIDX, userState, gameMoney, playTime, conn_count, userLevel, userEXP, rencpoint, renspoint, relateLevel, regionType, refillData, connDate, regDate)
                     VALUES (${accountIDX}, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, '2000-01-01', getdate())
                 `;
                 await request.query(userGameQuery);
+
+                console.log(accountIDX + 'userGameQuery Pass');
+                
 
                 const userNameQuery = `
                     INSERT INTO LosaGame.dbo.userNameDB (accountIDX, userName, userBirthday, userJumin1, userJumin2, userEnCode, userNumber, userGender, returnValue, userIP, regDate)
@@ -75,11 +92,15 @@ export default async function handler(req: any, res: any) {
                 `;
                 await request.query(userNameQuery);
 
+                console.log(accountIDX + 'userNameQuery Pass');
+
                 const userRecordBattleQuery = `
                     INSERT INTO LosaGame.dbo.userRecordBattleDB (accountIDX, type1_win, type1_lose, type1_kill, type1_death, type2_win, type2_lose, type2_kill, type2_death, type3_win, type3_lose, type3_kill, type3_death, type4_win, type4_lose, type4_kill, type4_death, regDate)
                     VALUES (${accountIDX}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, getdate())
                 `;
                 await request.query(userRecordBattleQuery);
+
+                console.log(accountIDX + 'userRecordBattleQuery Pass');
 
                 const userPresentQuery = `
                     INSERT INTO LosaGame.dbo.userPresentDB (sendIDX, receiveIDX, presentType, value1, value2, value3, value4, msgType, flag, limitDate, regDate)
@@ -87,11 +108,16 @@ export default async function handler(req: any, res: any) {
                 `;
                 await request.query(userPresentQuery);
 
+                console.log(accountIDX + 'userPresentQuery Pass');
+                
+
                 const userLoginQuery = `
                     INSERT INTO LosaGame.dbo.userLoginDB (accountIDX, encodeKey, gameServerID, connDate)
                     VALUES (${accountIDX}, '111111111111111', 0, getdate())
                 `;
                 await request.query(userLoginQuery);
+
+                console.log(accountIDX + 'userLoginQuery Pass');
 
                 res.status(200).json({ message: 'User registered successfully' });
             } catch (error) {

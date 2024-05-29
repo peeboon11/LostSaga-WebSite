@@ -85,7 +85,7 @@ function RegisterForm() {
                 alert('Username ขั้นต่ำ 4 ตัวอักษร');
                 return;
             }
-            if (data.name.length > 12) {
+            if (data.username.length > 12) {
                 alert('Username ได้สูงสุด 12 ตัวอักษร');
                 return;
             }
