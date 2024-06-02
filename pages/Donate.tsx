@@ -77,7 +77,7 @@ function Donate() {
                     body: JSON.stringify({ username: datasent.username })
                 });
                 if (response.ok) {
-                    const mobileNumber = '087-666-7520'
+                    const mobileNumber = process.env.NEXT_PUBLIC_MOBILE_NUMBER
                     const amount = datasent?.amount
                     const payload = generatePayload(mobileNumber, { amount })
 
