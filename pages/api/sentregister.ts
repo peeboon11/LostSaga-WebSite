@@ -81,11 +81,31 @@ export default async function handler(req: any, res: any) {
                 `;
                 await request.query(userRecordBattleQuery);
 
-                const userPresentQuery = `
+                const result2 = await sql.query`SELECT * FROM LosaGame.dbo.userMemberDB_old WHERE userID = ${username}`;
+                const resultdata2 = result2.recordset.map((user: any) => user.userID);
+                console.log(resultdata2.length);
+                if (resultdata2.length === 1) {
+                    const userPresentQuery = `
                     INSERT INTO LosaGame.dbo.userPresentDB (sendIDX, receiveIDX, presentType, value1, value2, value3, value4, msgType, flag, limitDate, regDate)
                     VALUES (1105, ${accountIDX}, 3, 3003192, 1, 0, 0, 3, 1, DATEADD(day, 28, GETDATE()), GETDATE())
                 `;
-                await request.query(userPresentQuery);
+                    const userPresentQuery1 = `
+                    INSERT INTO LosaGame.dbo.userPresentDB (sendIDX, receiveIDX, presentType, value1, value2, value3, value4, msgType, flag, limitDate, regDate)
+                    VALUES (1106, ${accountIDX}, 3, 3003192, 1, 0, 0, 3, 1, DATEADD(day, 28, GETDATE()), GETDATE())
+                `;
+                    await request.query(userPresentQuery);
+                    await request.query(userPresentQuery1);
+
+                    console.log(accountIDX + 'userPresentQuery Pass Old User');
+                } else {
+                    const userPresentQuery = `
+                    INSERT INTO LosaGame.dbo.userPresentDB (sendIDX, receiveIDX, presentType, value1, value2, value3, value4, msgType, flag, limitDate, regDate)
+                    VALUES (1105, ${accountIDX}, 3, 3003192, 1, 0, 0, 3, 1, DATEADD(day, 28, GETDATE()), GETDATE())
+                `;
+                    await request.query(userPresentQuery);
+
+                    console.log(accountIDX + 'userPresentQuery Pass New User');
+                }
 
                 const userLoginQuery = `
                     INSERT INTO LosaGame.dbo.userLoginDB (accountIDX, encodeKey, gameServerID, connDate)
