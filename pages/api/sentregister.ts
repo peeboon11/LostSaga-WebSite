@@ -29,6 +29,10 @@ export default async function handler(req: any, res: any) {
         try {
             await sql.connect(config);
             const request = new sql.Request();
+            const result2 = await sql.query`SELECT * FROM LosaGame.dbo.userMemberDB_old WHERE userID = ${username}`;
+            const resultdata2 = result2.recordset.map((user: any) => user.userID);
+            console.log(resultdata2.length);
+
             try {
                 const query = `
                     INSERT INTO LosaGame.dbo.userMemberDB (userID, nickName, userPWD, EMail, mailling, userType, joinType, limitType, limitDate, trackingcode, regDate, makeType, verified)
@@ -51,11 +55,20 @@ export default async function handler(req: any, res: any) {
                 const result = await request.query(accountIDXQuery);
                 const accountIDX = result.recordset[0].accountIDX;
 
-                const userCashQuery = `
+                if (resultdata2.length === 1) {
+                    const userCashQuery = `
                     INSERT INTO LosaGame.dbo.userCashDB (accountIDX, amtCash, amtBonus, amtLimit, amtSum, chgDate, regDate)
-                    VALUES (${accountIDX}, 0, 0, 99900, 0, getdate(), getdate())
+                    VALUES (${accountIDX}, 0, 200000, 99900, 0, getdate(), getdate())
                 `;
-                await request.query(userCashQuery);
+                    await request.query(userCashQuery);
+                } else {
+                    const userCashQuery = `
+                    INSERT INTO LosaGame.dbo.userCashDB (accountIDX, amtCash, amtBonus, amtLimit, amtSum, chgDate, regDate)
+                    VALUES (${accountIDX}, 0, 50000, 99900, 0, getdate(), getdate())
+                `;
+                    await request.query(userCashQuery);
+                }
+
 
                 const userInfoQuery = `
                     INSERT INTO LosaGame.dbo.userInfoDB (accountIDX, visit_count, rec_index, rec_inc, rec_dec, checkDate, cnnDate, userIP, regDate)
@@ -81,50 +94,47 @@ export default async function handler(req: any, res: any) {
                 `;
                 await request.query(userRecordBattleQuery);
 
-                const result2 = await sql.query`SELECT * FROM LosaGame.dbo.userMemberDB_old WHERE userID = ${username}`;
-                const resultdata2 = result2.recordset.map((user: any) => user.userID);
-                console.log(resultdata2.length);
-                if (resultdata2.length === 1) {
-                    const userPresentQuery = `
+            if (resultdata2.length === 1) {
+                const userPresentQuery = `
                     INSERT INTO LosaGame.dbo.userPresentDB (sendIDX, receiveIDX, presentType, value1, value2, value3, value4, msgType, flag, limitDate, regDate)
                     VALUES (1105, ${accountIDX}, 3, 3003192, 1, 0, 0, 3, 1, DATEADD(day, 28, GETDATE()), GETDATE())
                 `;
-                    const userPresentQuery1 = `
+                const userPresentQuery1 = `
                     INSERT INTO LosaGame.dbo.userPresentDB (sendIDX, receiveIDX, presentType, value1, value2, value3, value4, msgType, flag, limitDate, regDate)
                     VALUES (1106, ${accountIDX}, 3, 3003192, 1, 0, 0, 3, 1, DATEADD(day, 28, GETDATE()), GETDATE())
                 `;
-                    await request.query(userPresentQuery);
-                    await request.query(userPresentQuery1);
+                await request.query(userPresentQuery);
+                await request.query(userPresentQuery1);
 
-                    console.log(accountIDX + 'userPresentQuery Pass Old User');
-                } else {
-                    const userPresentQuery = `
+                console.log(accountIDX + 'userPresentQuery Pass Old User');
+            } else {
+                const userPresentQuery = `
                     INSERT INTO LosaGame.dbo.userPresentDB (sendIDX, receiveIDX, presentType, value1, value2, value3, value4, msgType, flag, limitDate, regDate)
                     VALUES (1105, ${accountIDX}, 3, 3003192, 1, 0, 0, 3, 1, DATEADD(day, 28, GETDATE()), GETDATE())
                 `;
-                    await request.query(userPresentQuery);
+                await request.query(userPresentQuery);
 
-                    console.log(accountIDX + 'userPresentQuery Pass New User');
-                }
+                console.log(accountIDX + 'userPresentQuery Pass New User');
+            }
 
-                const userLoginQuery = `
+            const userLoginQuery = `
                     INSERT INTO LosaGame.dbo.userLoginDB (accountIDX, encodeKey, gameServerID, connDate)
                     VALUES (${accountIDX}, '111111111111111', 0, getdate())
                 `;
-                await request.query(userLoginQuery);
-
-                res.status(200).json({ message: 'User registered successfully' });
-            } catch (error) {
-                res.status(500).json({ message: 'Failed to register user' });
-            }
-
-            await sql.query('IF (@@ERROR = 0) COMMIT TRAN ELSE ROLLBACK TRAN');
+            await request.query(userLoginQuery);
 
             res.status(200).json({ message: 'User registered successfully' });
         } catch (error) {
             res.status(500).json({ message: 'Failed to register user' });
         }
+
+        await sql.query('IF (@@ERROR = 0) COMMIT TRAN ELSE ROLLBACK TRAN');
+
+        res.status(200).json({ message: 'User registered successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to register user' });
     }
+}
 }
 
 
