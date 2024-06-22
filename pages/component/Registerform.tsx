@@ -160,12 +160,104 @@ function RegisterForm() {
 
         // Check name and username
 
-
-
-
-
-
-
+        // checkNameAndUsername();
+        // if (data.name.includes('[GM]') || data.username.includes('[GM]')) {
+        //     alert('ชื่อในเกม หรือ username ห้ามใช้ [GM] อยู่ในชื่อ');
+        //     return;
+        // }
+        // if (data.name.toLowerCase().startsWith('gm') || data.username.toLowerCase().startsWith('gm') || data.name.toLowerCase().startsWith('admin') || data.username.toLowerCase().startsWith('admin') || data.name.toLowerCase().startsWith('developer') || data.username.toLowerCase().startsWith('developer') || data.name.toLowerCase().startsWith('dev') || data.username.toLowerCase().startsWith('dev')) {
+        //     alert('ชื่อในเกม หรือ username ห้ามขึ้นต้นด้วย gm , GM , admin, dev หรือ developer');
+        //     return;
+        // }
+        // const checkFirstWord = () => {
+        //     const firstWord = data.name.split(' ')[0];
+        //     if (firstWord.toLowerCase() === '[GM]' || firstWord.toLowerCase() === 'gm' || firstWord.toLowerCase() === 'admin' || firstWord.toLowerCase() === 'developer' || firstWord.toLowerCase() === 'dev') {
+        //         alert('ชื่อในเกม หรือ username ห้ามใช้คำว่า GM, admin, dev หรือ developer อยู่ในชื่อ');
+        //         return;
+        //     }
+        // }
+        // checkFirstWord();
+        // if (data.name.length < 3) {
+        //     alert('ชื่อในเกม ขั้นต่ำ 3 ตัวอักษร');
+        //     return;
+        // }
+        // if (data.name.length > 10) {
+        //     alert('ชื่อในเกม ได้สูงสุด 10 ตัวอักษร');
+        //     return;
+        // }
+        // if (data.username.length < 4) {
+        //     alert('Username ขั้นต่ำ 4 ตัวอักษร');
+        //     return;
+        // }
+        // if (data.name.length > 12) {
+        //     alert('Username ได้สูงสุด 12 ตัวอักษร');
+        //     return;
+        // }
+        // // Check password
+        // const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+        // if (specialCharRegex.test(data.password)) {
+        //     alert('Password ไม่สามารถใช้อักษรพิเศษได้');
+        //     return;
+        // }
+        // if (data.password.length < 6) {
+        //     alert('Password ต้องมีขั้นต่ำ 6 หลัก');
+        //     return;
+        // }
+        // if (data.password.length > 12) {
+        //     alert('Password สูงสุด 12 หลัก');
+        //     return;
+        // }
+        // // Check confirmPassword
+        // if (data.password !== data.confirmPassword) {
+        //     alert('Confirm password does not match');
+        //     return;
+        // }
+        // // Check email format
+        // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // if (!emailRegex.test(data.email)) {
+        //     alert('Invalid email format');
+        //     return;
+        // }
+        // try {
+        //     const response = await fetch('/api/chackemail', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({ email: data.email, username: data.username, name: data.name })
+        //     });
+        //     if (response.ok) {
+        //         const response = await fetch('/api/sentregister', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: JSON.stringify({
+        //                 name: data.name,
+        //                 username: data.username,
+        //                 password: data.password,
+        //                 email: data.email
+        //             })
+        //         });
+        //         if (response.ok) {
+        //             alert('สมัครสมาชิก สำเร็จแล้ว');
+        //             window.location.href = '/';
+        //         } else {
+        //             alert('เกิดข้อผิดพลาดในการสมัครสมาชิก กรุณาลองใหม่อีกครั้ง');
+        //         }
+        //     } else if (response.status === 110) {
+        //         alert('Email นี้เคยถูกสมัครไปแล้ว');
+        //     } else if (response.status === 120) {
+        //         alert('Username นี้ถูกใช้ไปแล้ว');
+        //     } else if (response.status === 130) {
+        //         alert('ชื่อในเกมนี้ถูกใช้ไปแล้ว');
+        //     } else {
+        //         alert('Email Username ชื่อในเกมนี้ ถูกใช้ไปแล้ว กรุณาลองใหม่อีกครั้ง / โปรดแจ้งแอดมิน');
+        //     }
+        // } catch (error) {
+        //     console.error('Error checking email:', error);
+        //     alert('An error occurred while checking email');
+        // }
     }
 
 
