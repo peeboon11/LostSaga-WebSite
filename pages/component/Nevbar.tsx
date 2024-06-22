@@ -31,6 +31,11 @@ function Nevbar() {
                                 DISCORD
                             </div>
                         </Link>
+                        <Link href="/Donate" className={style.defaultbtn}>
+                            <div>
+                                Donate
+                            </div>
+                        </Link>
 
                         <Link href="/Register" className={style.registerbtnleft}>
                             <div>
