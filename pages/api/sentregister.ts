@@ -114,7 +114,7 @@ export default async function handler(req: any, res: any) {
                 if (resultdata2.length === 1) {
                     const userPresentQuery = `
                     INSERT INTO LosaGame.dbo.userPresentDB (sendIDX, receiveIDX, presentType, value1, value2, value3, value4, msgType, flag, limitDate, regDate)
-                    VALUES (1105, ${accountIDX}, 3, 3001703, 1, 0, 0, 3, 1, DATEADD(day, 28, GETDATE()), GETDATE())
+                    VALUES (1105, ${accountIDX}, 3, 3003139, 1, 0, 0, 3, 1, DATEADD(day, 28, GETDATE()), GETDATE())
                 `;
                     await request.query(userPresentQuery);
 
