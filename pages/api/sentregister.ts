@@ -71,7 +71,7 @@ export default async function handler(req: any, res: any) {
                 } else {
                     const userCashQuery = `
                     INSERT INTO LosaGame.dbo.userCashDB (accountIDX, amtCash, amtBonus, amtLimit, amtSum, chgDate, regDate)
-                    VALUES (${accountIDX}, 0, 50000, 99900, 0, getdate(), getdate())
+                    VALUES (${accountIDX}, 0, 10000, 99900, 0, getdate(), getdate())
                 `;
                     await request.query(userCashQuery);
                 }
