@@ -26,7 +26,7 @@ function Nevbar() {
                                 HOME
                             </div>
                         </Link>
-                        <Link href="https://discord.gg/DUrCkHs2m6" className={style.defaultbtn}>
+                        <Link href="https://discord.gg/j9PyznmeV9" className={style.defaultbtn}>
                             <div>
                                 DISCORD
                             </div>
