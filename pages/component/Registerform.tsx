@@ -77,8 +77,8 @@ function RegisterForm() {
                 alert('ชื่อในเกม ขั้นต่ำ 3 ตัวอักษร');
                 return;
             }
-            if (data.name.length > 10) {
-                alert('ชื่อในเกม ได้สูงสุด 10 ตัวอักษร');
+            if (data.name.length > 20) {
+                alert('ชื่อในเกม ได้สูงสุด 20 ตัวอักษร');
                 return;
             }
             if (data.username.length < 4) {
