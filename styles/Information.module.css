@@ -67,6 +67,18 @@
     z-index: 2;
 }
 
+.box3{
+    width: 70%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    opacity: 1;
+    z-index: 2;
+}
+
 .text{
     text-align: center;
     text-wrap: wrap;
@@ -134,4 +146,140 @@
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+
+
+
+
+.login{
+    display: flex;
+    border: none;
+    background-color: #2b2b2b;
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.login div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+.login div h2{
+    font-size: 3vh;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.login div input{
+    padding: 1rem;
+    margin: 5px;
+    border-radius: 20px;
+    border: none;
+    font-size: 2vh;
+    width: 100%;
+}
+
+
+.login div input:focus{
+    outline: none;
+}
+
+
+.login div button{
+    padding: 5px;
+    margin: 1rem;
+    border-radius: 20px;
+    border: none;
+    font-size: 2vh;
+    background-color: #5e76cb;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+}
+
+.login div button:hover{
+    background-color: #748de5;
+}
+
+
+.login2{
+    display: flex;
+    flex-direction: column;
+    border: none;
+    background-color: #2b2b2b;
+    border-radius: 20px;
+    padding: 2rem;
+    z-index: 2;
+}
+
+.login2 div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+.login2 div h2{
+    font-size: 3vh;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.login2 div input{
+    padding: 1rem;
+    margin: 5px;
+    border-radius: 20px;
+    border: none;
+    font-size: 2vh;
+    width: 100%;
+}
+
+
+.confirmchangename{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.confirmchangenamebutton1 {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    font-size: 2vh;
+    background-color: #5e8acb;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 40%;
+}
+
+.confirmchangenamebutton1:hover{
+    background-color: #748de5;
+}
+
+.confirmchangenamebutton2 {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #5e76cb;
+    font-size: 2vh;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 40%;
+}
+
+.confirmchangenamebutton2:hover{
+    background-color: #748de5;
 }

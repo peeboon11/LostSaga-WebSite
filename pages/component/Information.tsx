@@ -19,7 +19,7 @@ function Information() {
                         <p className={style.text}>ยินดีต้อนรับสู่ Lost Saga Thailand ที่คืนชีพกลับมาอีกครั้งและขอขอบคุณที่เข้ามาสนับสนุน เพื่อเป็นสนับทีมงานและอื่นที่ทำให้ Server ไปต่อได้</p>
                         <div style={{ marginTop: "1rem" }}>
                             <button className={style.defaultbtn}>
-                                <Link href="https://discord.gg/DUrCkHs2m6">
+                                <Link href="https://discord.gg/j9PyznmeV9">
                                     <div>
                                         JOIN DISCORD FOR NEWS
                                     </div>
