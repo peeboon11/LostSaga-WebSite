@@ -55,7 +55,7 @@ export default async function handler(req: any, res: any) {
                                    res.status(200).json({ message: "Change Name Success" });
                               } else {
                                    const remainingCooldown = Math.ceil((cooldownPeriod - (date.getTime() - date2.getTime())) / (24 * 60 * 60 * 1000));
-                                   res.status(400).json({ message: `คุณสามารถเปลี่ยนชื่อได้อีกครั้งใน ${remainingCooldown} วัน` });
+                                   res.status(400).json({ message: `คุณสามารถเปลี่ยนชื่อได้อีกครั้งในอีก ${remainingCooldown} วัน` });
                                    return 1;
                               }
                          }
