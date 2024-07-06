@@ -60,6 +60,17 @@ function Rename() {
             }
         }
         checkFirstWord();
+
+        const checkNameValidity = (name: string) => {
+            const regex = /^[a-zA-Z0-9]+$/;
+            if (!regex.test(name)) {
+                alert('ชื่อในเกม หรือ username ต้องประกอบด้วยตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น');
+                return;
+            }
+        }
+
+        checkNameValidity(name);
+
         if (name.length < 3) {
             alert('ชื่อในเกม ขั้นต่ำ 3 ตัวอักษร');
             return;
