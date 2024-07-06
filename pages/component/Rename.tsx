@@ -41,66 +41,79 @@ function Rename() {
 
     }
 
-    const sentnewname = (name: any , username: any) => {
-        if (name.includes('[GM]')) {
-            alert('ชื่อในเกม หรือ username ห้ามใช้ [GM] อยู่ในชื่อ');
-            return;
-        }
-        if (name.toLowerCase().startsWith('gm') || name.toLowerCase().startsWith('admin') ||
-            name.toLowerCase().startsWith('developer') || name.toLowerCase().startsWith('dev')
-        ) {
-            alert('ชื่อในเกม หรือ username ห้ามขึ้นต้นด้วย gm , GM , admin, dev หรือ developer');
-            return;
-        }
-        const checkFirstWord = () => {
-            const firstWord = name.split(' ')[0];
-            if (firstWord.toLowerCase() === '[GM]' || firstWord.toLowerCase() === 'gm' || firstWord.toLowerCase() === 'admin' || firstWord.toLowerCase() === 'developer' || firstWord.toLowerCase() === 'dev') {
-                alert('ชื่อในเกม หรือ username ห้ามใช้คำว่า GM, admin, dev หรือ developer อยู่ในชื่อ');
-                return;
+    const sentnewname = (name: string, username: string) => {
+        function validateName(name: string) {
+            if (name.includes('[GM]')) {
+                alert('ชื่อในเกม หรือ username ห้ามใช้ [GM] อยู่ในชื่อ');
+                return false;
             }
-        }
-        checkFirstWord();
-
-        const checkNameValidity = (name: string) => {
-            const regex = /^[a-zA-Z0-9]+$/;
-            if (!regex.test(name)) {
-                alert('ชื่อในเกม หรือ username ต้องประกอบด้วยตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น');
-                return;
+            if (name.toLowerCase().startsWith('gm') || name.toLowerCase().startsWith('admin') ||
+                name.toLowerCase().startsWith('developer') || name.toLowerCase().startsWith('dev')) {
+                alert('ชื่อในเกม หรือ username ห้ามขึ้นต้นด้วย gm , GM , admin, dev หรือ developer');
+                return false;
             }
-        }
-
-        checkNameValidity(name);
-
-        if (name.length < 3) {
-            alert('ชื่อในเกม ขั้นต่ำ 3 ตัวอักษร');
-            return;
-        }
-        if (name.length > 20) {
-            alert('ชื่อในเกม ได้สูงสุด 20 ตัวอักษร');
-            return;
-        }
-
-        try {
-            fetch('/api/changename', {
-                method: 'POST',
-                body: JSON.stringify({ username: username, newname: name }),
-                headers: {
-                    'Content-Type': 'application/json'
+            const checkFirstWord = () => {
+                const firstWord = name.split(' ')[0];
+                if (firstWord.toLowerCase() === '[gm]' || firstWord.toLowerCase() === 'gm' || firstWord.toLowerCase() === 'admin' || firstWord.toLowerCase() === 'developer' || firstWord.toLowerCase() === 'dev') {
+                    alert('ชื่อในเกม หรือ username ห้ามใช้คำว่า GM, admin, dev หรือ developer อยู่ในชื่อ');
+                    return false;
                 }
-            }).then(res => res.json()).then(res => {
-                console.log(res);
-                if (res.message === "Change Name Success") {
-                    alert(res.message)
-                    window.location.reload();
-                } else {
-                    alert(res.message)
-                    window.location.reload();
+                return true;
+            }
+            if (!checkFirstWord()) {
+                return false;
+            }
+
+            const checkNameValidity = (name: string) => {
+                const regex = /^[a-zA-Z0-9]+$/;
+                if (!regex.test(name)) {
+                    alert('ชื่อในเกม หรือ username ต้องประกอบด้วยตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น');
+                    return false;
                 }
-            })
-        } catch (error) {
-            console.log(error);
+                return true;
+            }
+
+            if (!checkNameValidity(name)) {
+                return false;
+            }
+
+            if (name.length < 3) {
+                alert('ชื่อในเกม ขั้นต่ำ 3 ตัวอักษร');
+                return false;
+            }
+            if (name.length > 20) {
+                alert('ชื่อในเกม ได้สูงสุด 20 ตัวอักษร');
+                return false;
+            }
+
+            return true;
+        }
+        if (validateName(name)) {
+            try {
+                fetch('/api/changename', {
+                    method: 'POST',
+                    body: JSON.stringify({ username: username, newname: name }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(res => res.json()).then(res => {
+                    console.log(res);
+                    if (res.message === "Change Name Success") {
+                        alert(res.message)
+                        window.location.reload();
+                    } else {
+                        alert(res.message)
+                        window.location.reload();
+                    }
+                })
+            } catch (error) {
+                window.location.reload();
+            }
+        }else{
             window.location.reload();
         }
+
+        
     }
 
     const sentlogin = () => {
