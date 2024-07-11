@@ -2,7 +2,7 @@
 import React, { use } from 'react'
 import style from '../../styles/RegisterForm.module.css'
 import { useState } from 'react'
-import wallpaper from '../../public/238.png'
+import wallpaper from '../../public/238.jpg'
 import ReCAPTCHA from "react-google-recaptcha";
 require('dotenv').config();
 
